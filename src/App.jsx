@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Nav from "./components/Nav";
 import Contact from "./pages/Contact";
+import Music from "./pages/Music";  
 import { PrivateRoute } from "./components/PrivateRoute";
  
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/music" element={<Music/>} />
           <Route element={<PrivateRoute />}>
             <Route path="/contact" element={<Contact />} />
           </Route>
