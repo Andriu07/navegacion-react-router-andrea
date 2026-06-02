@@ -1,11 +1,13 @@
 import React from "react";
  
-const DataTestForm = ({
+const MusicForm = ({
   id,
-  name,
-  setName,
-  age,
-  setAge,
+  songName,
+  setSongName,
+  singerName,
+  setSingerName,
+  nationality,
+  setNationality,
   onSubmit,
   onCancel,
   submitting,
@@ -17,14 +19,14 @@ const DataTestForm = ({
       <div className="flex items-start justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">
-            {id ? "Editar registro" : "Crear registro"}
+            {id ? "Editar cancion": "Añadir nueva canción"}
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Administra los datos de la API con nombre y edad.
+            Administra los datos de la API con los datos de tu musica favorita!.
           </p>
         </div>
  
-        {id ? (
+        {id && (
           <button
             type="button"
             onClick={onCancel}
@@ -32,20 +34,20 @@ const DataTestForm = ({
           >
             Cancelar edición
           </button>
-        ) : null}
+        )}
       </div>
  
-      {error ? (
+      {error && (
         <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
         </div>
-      ) : null}
+      )}
  
-      {message ? (
+      {message && (
         <div className="mb-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
           {message}
         </div>
-      ) : null}
+      )}
  
       <form className="space-y-4" onSubmit={onSubmit}>
         <div>
@@ -53,35 +55,52 @@ const DataTestForm = ({
             htmlFor="name"
             className="block text-sm font-medium text-gray-700"
           >
-            Nombre
+            Nombre de la canción
           </label>
           <input
             type="text"
-            id="name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
+            id="songName"
+            value={songName}
+            onChange={(event) => setSongName(event.target.value)}
             className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
-            placeholder="Ingresa el nombre"
+            placeholder="Ingresa el nombre de la canción"
           />
         </div>
  
         <div>
           <label
-            htmlFor="age"
+            htmlFor="singerName"
             className="block text-sm font-medium text-gray-700"
           >
-            Edad
+            Cantante
           </label>
           <input
-            type="number"
-            id="age"
-            min="0"
-            value={age}
-            onChange={(event) => setAge(event.target.value)}
+            type="text"
+            id="singerName"
+            value={singerName}
+            onChange={(event) => setSingerName(event.target.value)}
             className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
-            placeholder="Ingresa la edad"
+            placeholder="Ingrese el cantante/artista"
           />
         </div>
+
+         <div>
+          <label
+            htmlFor="nationality"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Nacionalidad
+          </label>
+          <input
+            type="text"
+            id="nationality"
+            value={nationality}
+            onChange={(event) => setNationality(event.target.value)}
+            className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            placeholder="Ingrese la nacionalidad"
+          />
+        </div>
+       
  
         <button
           type="submit"
@@ -99,4 +118,4 @@ const DataTestForm = ({
   );
 };
  
-export default DataTestForm;
+export default MusicForm;

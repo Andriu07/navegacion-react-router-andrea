@@ -13,10 +13,10 @@ const MusicList = ({
       <div className="flex items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">
-            Lista de registros
+            Lista de canciones
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            Consulta, edita y elimina los datos de la API.
+            Consulta, edita y elimina los datos sobre tu musica de la API.
           </p>
         </div>
  
@@ -25,29 +25,29 @@ const MusicList = ({
           onClick={onAdd}
           className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-800"
         >
-          Nuevo registro
+          Nueva canción
         </button>
       </div>
  
-      {loading ? (
+      {loading && (
         <div className="rounded-lg border border-gray-200 bg-gray-50 px-4 py-6 text-center text-gray-600">
           Cargando datos...
         </div>
-      ) : null}
+      )}
  
-      {error ? (
+      {error && (
         <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error}
         </div>
-      ) : null}
+      )}
  
-      {!loading && !dataTest.length ? (
+      {!loading && !dataTest.length && (
         <div className="rounded-lg border border-dashed border-gray-300 bg-gray-50 px-4 py-6 text-center text-gray-600">
-          No hay registros disponibles.
+          No hay canciones disponibles.
         </div>
-      ) : null}
+      )}
  
-      {!loading && dataTest.length > 0 ? (
+      {!loading && dataTest.length > 0 && (
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead>
@@ -64,9 +64,14 @@ const MusicList = ({
                 <tr key={item.id} className="text-sm text-gray-700">
                   <td className="px-4 py-3">{item.id}</td>
                   <td className="px-4 py-3 font-medium text-gray-900">
-                    {item.name}
+                    {item.songName}
                   </td>
-                  <td className="px-4 py-3">{item.age}</td>
+                  <td className="px-4 py-3">{item.singerName}</td>
+                   <td className="px-4 py-3">
+                                        <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                                            {item.nationality}
+                                        </span>
+                                    </td>
                   <td className="px-4 py-3">
                     <div className="flex justify-end gap-2">
                       <button
@@ -90,7 +95,7 @@ const MusicList = ({
             </tbody>
           </table>
         </div>
-      ) : null}
+      )}
     </section>
   );
 };

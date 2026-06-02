@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
- 
-const API_URL = "https://retoolapi.dev/1osLfi/dataTest";
- 
-const useDataTest = () => {
-  const [activeTab, setActiveTab] = useState("list");
-  const [dataTest, setDataTest] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
- 
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+
+const API_URL = "https://retoolapi.dev/f1D0Zs/dataGrupo2A";
+
+const useMusic = () => {
+    const [activeTab, setActiveTab] = useState("list");
+    const [dataTest, setDataTest] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [submitting, setSubmitting] = useState(false);
+    const [error, setError] = useState("");
+    const [message, setMessage] = useState("");
+    const [id, setId] = useState("");
+    const [songName, setSongName] = useState("");
+    const [singerName, setSingerName] = useState("");
+    const [nationality, setNationality] = useState("");
  
   // Loads the records from the API and updates the list in state.
   const fetchDataTest = async () => {
@@ -42,8 +42,9 @@ const useDataTest = () => {
   // Clears the form fields and removes the current record id.
   const resetForm = () => {
     setId("");
-    setName("");
-    setAge("");
+    setSongName("");
+    setSingerName("");
+    setNationality("");
   };
  
   // Opens the form in create mode with empty values.
@@ -56,8 +57,9 @@ const useDataTest = () => {
   // Loads the selected record into the form so it can be edited.
   const handleEdit = (item) => {
     setId(item.id);
-    setName(item.name ?? "");
-    setAge(item.age ?? "");
+    setSongName(item.songName ?? "");
+    setSingerName(item.singerName ?? "");
+    setNationality(item.nationality ?? "");
     setMessage("");
     setActiveTab("form");
   };
@@ -65,16 +67,17 @@ const useDataTest = () => {
   // Submits the form to create a new record or update an existing one.
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const trimmedName = name.trim();
-    const numericAge = Number(age);
+     const trimmedSongName = songName.trim();
+      const trimmedSingerName = singerName.trim();
+      const trimmedNationality = nationality.trim();
  
-    if (!trimmedName) {
-      setError("El nombre es obligatorio");
+    if (!trimmedSongName) {
+      setError("El nombre  de la cancion es obligatorio");
       return;
     }
  
-    if (!age || Number.isNaN(numericAge) || numericAge < 0) {
-      setError("La edad debe ser un numero valido");
+    if (!trimmedSongName || !trimmedSingerName || !trimmedNationality) {
+      setError("Todos los campos son obligatorios");
       return;
     }
  
@@ -84,8 +87,9 @@ const useDataTest = () => {
       setMessage("");
  
       const payload = {
-        name: trimmedName,
-        age: numericAge,
+        songName: trimmedSongName,
+        singerName: trimmedSingerName,
+        nationality: trimmedNationality,
       };
  
       const response = await fetch(id ? `${API_URL}/${id}` : API_URL, {
@@ -159,10 +163,12 @@ const useDataTest = () => {
     error,
     message,
     id,
-    name,
-    setName,
-    age,
-    setAge,
+    songName,
+    setSongName,
+    singerName,
+    setSingerName,
+    nationality,
+    setNationality,
     fetchDataTest,
     openCreateForm,
     handleEdit,
@@ -171,4 +177,4 @@ const useDataTest = () => {
   };
 };
  
-export default useDataTest;
+export default useMusic;
